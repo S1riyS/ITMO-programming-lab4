@@ -1,37 +1,64 @@
 package org.siriys;
 
+import org.siriys.enums.Fruit;
+import org.siriys.enums.State;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Story {
     public static void main(String[] args) {
+        // Characters of story
+        MumiTrollFamily mumiTrollFamily = new MumiTrollFamily();
+        MumiTrollFamily.MumiTroll mumiTroll = mumiTrollFamily.new MumiTroll("Муми-тролль");
+        MumiTrollFamily.MumiMama mumiMama = mumiTrollFamily.new MumiMama("Муми-мама");
+        MumiTrollFamily.MumiPapa mumiPapa = mumiTrollFamily.new MumiPapa("Муми-папа");
+
         Emma emma = new Emma("Эмма");
-        emma.performAction();
+        Character frekenSnork = new Character("фрекен Снорк") {
+            @Override
+            public String toString() {
+                return String.format("%s {name='%s'} (Anonymous class hehe)", getClass().getName(), this.name);
+            }
+        };
 
-        ArrayList<MumiTroll> mumiTrollFamilyMembers = new ArrayList<>();
-        for (MumiTrollFamily member : MumiTrollFamily.values()) {
-            MumiTroll mumiTroll = new MumiTroll(member.getDisplayName());
-            mumiTrollFamilyMembers.add(mumiTroll);
-            emma.addObserver(mumiTroll);
+
+        // Adding members of Mumi-Troll family to list of observers
+        for (MumiTrollFamilyMember member : mumiTrollFamily.members) {
+            emma.addObserver(member);
         }
 
+        // Surroundings
+        Surroundings.Tree tree = new Surroundings.Tree("GREEN");
+
+        // Story
+        mumiTroll.setState(State.IDLE);
+        mumiTroll.renderCurrentState();
+        mumiTroll.contemplate(tree);
+        mumiTroll.setState(State.WHISTLING);
+        mumiTroll.renderCurrentState();
+
+        System.out.println();
+
+        emma.approach();
+        emma.mumble();
         emma.notifyObservers();
+        mumiTrollFamily.setFamilyState(State.WORRIED);
+        mumiTrollFamily.renderCurrentFamilyState();
+        mumiTrollFamily.forget();
 
-        for (MumiTroll member : mumiTrollFamilyMembers) {
-            member.performAction();
+        System.out.println();
+
+        try {
+            mumiMama.makeBed(mumiTroll, frekenSnork);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("\nТестирование переопределенных методов:");
-        MumiTroll mumiTrollObject = mumiTrollFamilyMembers.get(0);
-
-        // Character toString() method
-        System.out.println(emma);
-        // Character equals() method (true case)
-        Emma emma1 = new Emma("Эмма");
-        System.out.println(emma.equals(emma1));
-        // Character equals() method (false case)
-        System.out.println(emma.equals(mumiTrollObject));
-        // Character hashCode() method
-        System.out.println(mumiTrollObject.hashCode());
+        HashMap<Fruit, Integer> fruitBasketContent = new HashMap<>();
+        fruitBasketContent.put(Fruit.APPLE, 6);
+        fruitBasketContent.put(Fruit.BANANA, 4);
+        fruitBasketContent.put(Fruit.KIWI, 2);
+        mumiMama.prepareFruitBasket(fruitBasketContent);
     }
 }
-

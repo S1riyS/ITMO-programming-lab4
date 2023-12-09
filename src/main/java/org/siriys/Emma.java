@@ -12,11 +12,13 @@ public class Emma extends Character implements Observable {
         super(name);
     }
 
-    @Override
-    public void performAction() {
-        System.out.println(this.name + " прибежал(а).");
-        System.out.println(this.name + " что-то бормочет.");
-        System.out.println(this.name + " заковылял(а) в темноту.");
+    public void approach() {
+        System.out.println(this.name + " прибежал(а)");
+    }
+
+    public void mumble() {
+        System.out.println(this.name + " что-то бормочет");
+
     }
 
     @Override

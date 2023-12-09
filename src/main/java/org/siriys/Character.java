@@ -1,18 +1,13 @@
 package org.siriys;
 
-import org.siriys.interfaces.IAct;
-
 import java.util.Objects;
 
-public abstract class Character implements IAct {
+public class Character {
     protected String name;
 
     public Character(String name) {
         this.name = name;
     }
-
-    @Override
-    public abstract void performAction();
 
     @Override
     public boolean equals(Object obj) {
@@ -39,7 +34,7 @@ public abstract class Character implements IAct {
 
     @Override
     public String toString() {
-        return String.format("%s {name='%s'}", getClass().getName(), this.name);
+        return String.format("%s {name='%s'}", getClass().getSimpleName(), this.name);
     }
 }
 
