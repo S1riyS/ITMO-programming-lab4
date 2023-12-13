@@ -3,7 +3,7 @@ package org.siriys;
 import org.siriys.enums.Fruit;
 import org.siriys.enums.State;
 import org.siriys.exceptions.CantMakeBedException;
-import org.siriys.exceptions.TooManyFruitsError;
+import org.siriys.exceptions.BasketOverflowException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +63,7 @@ public class MumiTrollFamily {
 
             for (Integer value : content.values()) {
                 if (value > 25) {
-                    throw new TooManyFruitsError("Слишком много фруктов, мужик");
+                    throw new BasketOverflowException("Слишком много фруктов, мужик");
                 }
             }
 
