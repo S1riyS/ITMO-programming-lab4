@@ -34,7 +34,7 @@ public class MumiTrollFamily {
             members.add(this);
         }
 
-        public void makeBed(Character... characters) throws Exception {
+        public void makeBed(Character... characters) throws CantMakeBedException {
             if (this.getState() != State.IDLE) {
                 throw new CantMakeBedException(this.name + " не в состоянии подготовить кровать");
             }

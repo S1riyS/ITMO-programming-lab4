@@ -2,6 +2,8 @@ package org.siriys;
 
 import org.siriys.enums.Fruit;
 import org.siriys.enums.State;
+import org.siriys.exceptions.BasketOverflowException;
+import org.siriys.exceptions.CantMakeBedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +53,7 @@ public class Story {
 
         try {
             mumiMama.makeBed(mumiTroll, frekenSnork);
-        } catch (Exception e) {
+        } catch (CantMakeBedException e) {
             e.printStackTrace();
         }
 
@@ -59,6 +61,11 @@ public class Story {
         fruitBasketContent.put(Fruit.APPLE, 6);
         fruitBasketContent.put(Fruit.BANANA, 4);
         fruitBasketContent.put(Fruit.KIWI, 2);
-        mumiMama.prepareFruitBasket(fruitBasketContent);
+
+        try {
+            mumiMama.prepareFruitBasket(fruitBasketContent);
+        } catch (BasketOverflowException e) {
+            e.printStackTrace();
+        }
     }
 }
