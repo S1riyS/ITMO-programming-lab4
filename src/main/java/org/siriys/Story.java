@@ -54,7 +54,7 @@ public class Story {
         try {
             mumiMama.makeBed(mumiTroll, frekenSnork);
         } catch (CantMakeBedException e) {
-            e.printStackTrace();
+            System.out.println("EXCEPTION! - " + e.getMessage());
         }
 
         HashMap<Fruit, Integer> fruitBasketContent = new HashMap<>();
@@ -65,7 +65,7 @@ public class Story {
         try {
             mumiMama.prepareFruitBasket(fruitBasketContent);
         } catch (BasketOverflowException e) {
-            e.printStackTrace();
+            System.out.println("EXCEPTION! - " + e.getMessage());
         }
     }
 }
